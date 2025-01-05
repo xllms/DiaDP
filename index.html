@@ -1,12 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DiaDP</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Chinese Dialogue-Level Dependency Parsing Challenge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chinese Dialogue-Level Dependency Parsing</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
 </head>
+
 <body>
-    <h1>Welcome to DiaDP</h1>
-    <p>This website is for Dialogue-Level Dependency Parsing.</p>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">Chinese Dialogue-Level Dependency Parsing</h1>
+                        <div class="publication-links">
+                            <span class="link-block">
+                                <a href="#introduction" class="external-link button is-normal is-rounded is-dark">
+                                    <span>Introduction</span>
+                                </a>
+                            </span>
+                            <span class="link-block">
+                                <a href="#challenge" class="external-link button is-normal is-rounded is-dark">
+                                    <span>Challenge</span>
+                                </a>
+                            </span>
+                            <span class="link-block">
+                                <a href="#dataset" class="external-link button is-normal is-rounded is-dark">
+                                    <span>Dataset</span>
+                                </a>
+                            </span>
+                            <span class="link-block">
+                                <a href="#submission" class="external-link button is-normal is-rounded is-dark">
+                                    <span>Submission</span>
+                                </a>
+                            </span>
+                            <span class="link-block">
+                                <a href="#timeline" class="external-link button is-normal is-rounded is-dark">
+                                    <span>Timeline</span>
+                                </a>
+                            </span>
+                            <span class="link-block">
+                                <a href="#rewards" class="external-link button is-normal is-rounded is-dark">
+                                    <span>Rewards</span>
+                                </a>
+                            </span>
+                            <span class="link-block">
+                                <a href="#organizers" class="external-link button is-normal is-rounded is-dark">
+                                    <span>Organizers</span>
+                                </a>
+                            </span>
+                            <span class="link-block">
+                                <a href="#references" class="external-link button is-normal is-rounded is-dark">
+                                    <span>References</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Introduction -->
+            <div id="introduction" class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Introduction</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            We propose the Dialogue-Level Dependency Parsing (DiaDP) task for Chinese to promote research in dialogue understanding. This task falls within the domain of fine-grained semantic structure analysis in multi-turn dialogues. In the DiaDP task, models and systems are expected to generate accurate dependency structures that capture the semantic relationships between utterances and their elements across dialogue turns.
+                        </p>
+                        <p>
+                            To comprehensively evaluate model performance, the task assesses both inner parsing, focusing on dependencies within an Elementary Discourse Unit (EDU), and inter parsing, capturing dependencies across dialogue EDUs. We introduce a dataset to serve as a solid foundation for benchmarking and advancing dialogue-level semantic parsing research.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenge -->
+            <div id="challenge" class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Challenge Task Definition and Metrics</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Participants are required to construct models that can accurately parse dialogue-level dependency structures. Given a multi-turn dialogue, models must predict dependency structures that capture both inner-turn relationships (within individual turns) and inter-turn relationships (across turns), ensuring fine-grained semantic coherence.
+                        </p>
+                        <p><b>Evaluation Metrics:</b></p>
+                        <ul>
+                            <li><b>Inner UAS and LAS:</b> Measures the model’s performance within EDUs.</li>
+                            <li><b>Inter UAS and LAS:</b> Measures performance across EDUs.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dataset -->
+            <div id="dataset" class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Dataset</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Our dataset is structured specifically for the Dialogue-Level Dependency Parsing (DiaDP) task. Each dialogue is represented in JSON format, consisting of turns, utterances, and their dependency relationships.
+                        </p>
+                        <pre id="jsonShow">
+{
+  "id": "10374",
+  "dialog": [
+    { "turn": "0", "utterance": "请您稍等，正在为您确认此前咨询内容。", "speaker": "A" }
+  ],
+  "relationship": [
+    { "0-0": "root", "0-1": "接收词" }
+  ]
+}
+                        </pre>
+                        <p>
+                            The dataset includes dependency relation labels like <b>root, sasubi, obj, pred</b>, and more. Detailed explanations can be found in the <a href="http://ltp.suda.edu.cn/index.php/CODT">CODT guidelines</a>.
+                        </p>
+                        <p>The dataset is available at: <a href="https://github.com/Zzoay/DialogDep">GitHub Repository</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div id="timeline" class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Timeline</h2>
+                    <table>
+                        <tr><td>March 18, 2025</td><td>Direct workshop paper submission deadline</td></tr>
+                        <tr><td>March 25, 2025</td><td>ARR pre-reviewed paper commitment deadline</td></tr>
+                        <tr><td>April 5, 2025</td><td>Notification of shared tasks</td></tr>
+                        <tr><td>July 31st - August 1st, 2025</td><td>Workshop dates</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Rewards -->
+            <div id="rewards" class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Rewards</h2>
+                    <p><b>1st Place:</b> $3,000 USD</p>
+                    <p><b>2nd Place:</b> $1,500 USD</p>
+                    <p><b>3rd Place:</b> $1,000 USD</p>
+                </div>
+            </div>
+
+            <!-- Organizers -->
+            <div id="organizers" class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Organizers</h2>
+                    <p>Jianling Li (Tianjin University, China)</p>
+                    <p>Hao Fei (Skywork AI, Singapore)</p>
+                    <p>Meishan Zhang (Harbin Institute of Technology, Shenzhen, China)</p>
+                    <p>Min Zhang (Harbin Institute of Technology, Shenzhen, China)</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
