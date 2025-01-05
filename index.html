@@ -10,6 +10,53 @@
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
     <link rel="stylesheet" href="./static/css/bulma.min.css">
     <link rel="stylesheet" href="./static/css/index.css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        .hero {
+            background-color: #f8f9fa;
+            padding: 2rem 1rem;
+        }
+
+        .hero .title {
+            color: #333;
+        }
+
+        .link-block a {
+            margin: 5px;
+        }
+
+        .section {
+            padding: 3rem 1rem;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-left: 4px solid #4caf50;
+            overflow-x: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 
 <body>
@@ -78,7 +125,7 @@
                             We propose the Dialogue-Level Dependency Parsing (DiaDP) task for Chinese to promote research in dialogue understanding. This task falls within the domain of fine-grained semantic structure analysis in multi-turn dialogues. In the DiaDP task, models and systems are expected to generate accurate dependency structures that capture the semantic relationships between utterances and their elements across dialogue turns.
                         </p>
                         <p>
-                            To comprehensively evaluate model performance, the task assesses both inner parsing, focusing on dependencies within an Elementary Discourse Unit (EDU), and inter parsing, capturing dependencies across dialogue EDUs. We introduce a dataset to serve as a solid foundation for benchmarking and advancing dialogue-level semantic parsing research.
+                            To comprehensively evaluate model performance, the task assesses both inner parsing, focusing on dependencies within an Elementary Discourse Unit (EDU), and inter parsing, capturing dependencies across dialogue EDUs.
                         </p>
                     </div>
                 </div>
@@ -159,6 +206,19 @@
                     <p>Hao Fei (Skywork AI, Singapore)</p>
                     <p>Meishan Zhang (Harbin Institute of Technology, Shenzhen, China)</p>
                     <p>Min Zhang (Harbin Institute of Technology, Shenzhen, China)</p>
+                </div>
+            </div>
+
+            <!-- References -->
+            <div id="references" class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">References</h2>
+                    <ol>
+                        <li>Zhang, M., Jiang, G., Liu, S., Chen, J., & Zhang, M. (2024). LLM–assisted data augmentation for Chinese dialogue–level dependency parsing. <i>Computational Linguistics</i>.</li>
+                        <li>Jiang, G., Liu, S., Zhang, M., & Zhang, M. (2023). A Pilot Study on Dialogue-Level Dependency Parsing for Chinese. <i>Findings of ACL 2023</i>.</li>
+                        <li>Dozat, T., & Manning, C. D. (2017). Deep biaffine attention for neural dependency parsing. In Proceedings of ICLR.</li>
+                        <li>Guo, P., Huang, S., Jiang, P., Sun, Y., Zhang, M., & Zhang, M. (2022). Curriculum-Style Fine-Grained Adaptation for Unsupervised Cross-Lingual Dependency Transfer. <i>IEEE/ACM Transactions</i>.</li>
+                    </ol>
                 </div>
             </div>
         </div>
