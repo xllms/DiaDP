@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Chinese Dialogue-Level Dependency Parsing Challenge">
-    <title>Chinese Dialogue-Level Dependency Parsing</title>
+    <title>Chinese Dialogue-Level Dependency Parsing 
+        <a href="https://xllms.github.io/" target="_blank" style="color: blue;">@XLLM 2025</a>
+    </title>
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans" rel="stylesheet">
     <style>
         body {
@@ -85,12 +87,14 @@
 
 <body>
     <header>
-        <h1>Chinese Dialogue-Level Dependency Parsing</h1>
+        <h1>
+            Chinese Dialogue-Level Dependency Parsing @ 
+            <a href="https://xllms.github.io/" target="_blank" style="color: red; text-decoration: none;">XLLM 2025</a>
+        </h1>
         <div class="buttons">
             <a href="#introduction" class="button">Introduction</a>
             <a href="#dataset" class="button">Dataset</a>
             <a href="#metrics" class="button">Metrics</a>
-            <!-- <a href="#registration" class="button">Registration</a> -->
             <a href="#submission" class="button">Submission</a>
             <a href="#timeline" class="button">Timeline</a>
             <a href="#rewards" class="button">Rewards</a>
@@ -144,22 +148,64 @@
         <section id="introduction" class="section">
             <h2>Introduction</h2>
             <p>
-                We propose the Dialogue-Level Dependency Parsing (DiaDP) task for Chinese to promote research in dialogue understanding.
-                This task focuses on fine-grained semantic structure analysis in multi-turn dialogues, challenging models to generate accurate dependency structures that capture semantic relationships between utterances and their components across dialogue turns. 
-                To comprehensively evaluate model performance, the task incorporates both inner parsing, which identifies dependencies within individual Elementary Discourse Units (EDUs), and inter parsing, which captures dependencies spanning multiple EDUs.
-                To support this task, we present a high-quality Chinese Dialogue Dependency Parsing dataset, featuring manually annotated dialogues. 
-                This dataset includes a test set and a small training set containing 50 dialogues to help participants understand the data structure and format. 
-              </p>
+                We propose the Dialogue-Level Dependency Parsing (DiaDP) task for Chinese, designed to advance research in dialogue understanding by focusing on fine-grained semantic structure analysis in multi-turn dialogues. 
+                This task challenges models to generate accurate dependency structures that capture both <b style="color: black;">inner</b> and <b style="color: black;">inter</b> semantic relationships within Elementary Discourse Units (EDUs). 
+                To comprehensively evaluate model performance, the task incorporates inner parsing, which identifies dependencies within individual EDUs using labels such as root, subj, and attr, 
+                and inter parsing, which captures dependencies spanning multiple EDUs, focusing on discourse-level relations such as qst-ans and stm-rsp. 
+                The example figure illustrates examples of these inner-turn and inter-turn dependency relationships, highlighting the intricate nature of the task. 
+                Adopting a <b style="color: black;">few-shot</b> learning setting, we provide a small training set of 50 annotated dialogues to help participants understand the data structure and format. 
+                The ultimate goal of this task is to accurately capture these fine-grained semantic relationships, bridging the gap between turn-level and dialogue-level understanding.
+            </p>
+            <div style="text-align: center;">
+            <img src="examp.jpg" alt="This is an example of Chinese DiaDP" width="400" height="300" />
+            <figcaption style="margin-top: 10px;">An example of Chinese Dialogue-Level Dependency Parsing.</figcaption>
+            </div>
         </section>
 
         <!-- Dataset Section -->
         <section id="dataset" class="section">
             <h2>Dataset</h2>
-            <p>The dataset is structured specifically for the Dialogue-Level Dependency Parsing (DiaDP) task. 
-                The dataset consists of high-quality manually annotated dialogues in Chinese, designed to capture both inner and inter dependency relationships. 
-                Each dialogue is represented in JSON format, consisting of turns, utterances, and their dependency relationships. 
-                The dataset provides rich annotations for a wide variety of syntactic and semantic relations.</p>
-            <p>Available baseline and training data  for download at <a href="https://github.com/jianlingl/DiaDP.git" style="color: blue;"> this GitHub Repository</a>.</p>
+            <p>
+                For the DiaDP task, we provide Chinese Dialogue-level
+                Dependency Treebank (CDDT) consisting of <strong>800 annotated examples</strong> as the test set, 
+                accompanied by a small <strong>50-sample training set</strong> for few-shot learning.
+            </p>
+            <div style="text-align: center;">
+                <img src="data.jpg" alt="This is an statis table of CDDT" width="300" height="200" />
+                </div>
+            <p>The CDDT statistics are shown in the table with a sample provided below.</p>
+            <div style="border: 1px solid #ddd; border-radius: 5px; padding: 10px; background-color: #f9f9f9; overflow-x: auto; white-space: nowrap;">
+                <pre style="white-space: pre; word-wrap: normal;">
+[
+    {
+        "id": 10374,
+        "dialog": [
+            {
+                "turn": 0,   # Dialogue turn index, starting from 0
+                "utterance": "请 您 稍 等 ， 正在 为 您 确认 此前 咨询 内容 。",   # Text content, with words separated by spaces
+                "speaker": "A"   # Speaker
+            },
+            ...
+        ],
+        "relationship": [
+            [
+                "0-0",     # Source token, i_j where i is the utterance index and j is the token index (j=0 represents the virtual root of the utterance)
+                "root",    # Dependency relation
+                "0-1"      # Target token, indexed similarly to the source token
+            ],
+            ...
+        ]
+    }
+]
+                </pre>
+            </div>
+            <p>
+                The <code>relationship</code> field includes <strong>21 inner</strong> and <strong>19 inter</strong> dependency relations. 
+                For detailed definitions of these relations, please refer to the paper[1].
+                In addition to the training set, we provide various versions of <strong>augmented data</strong> to further enhance task performance, 
+                along with a simple <strong>baseline model</strong>. For more details, please visit 
+                <a href="https://github.com/jianlingl/DiaDP" target="_blank" style="color: blue;">this GitHub Repository</a>.
+            </p>
         </section>
 
         <!-- metrics Section -->
@@ -168,12 +214,10 @@
             <p>Participants are required to construct models that can accurately parse dialogue-level dependency structures. The evaluation of the Dialogue-Level Dependency Parsing task is based on two key metrics:</p>
             <ul>
                 <li>
-                    <b>Inner UAS and LAS:</b> Measures the model’s performance in capturing dependency 
-                    relationships within individual EDUs.
+                    <b>Inner UAS and LAS:</b> Evaluates the model’s performance to capture dependencies within EDUs.
                 </li>
                 <li>
-                    <b>Inter UAS and LAS:</b> Measures the model’s performance in capturing dependency 
-                    relationships across different EDUs, reflecting the semantic coherence between EDUs.
+                    <b>Inter UAS and LAS:</b> Evaluates the model’s performance to capture cross-EDU dependencies.
                 </li>
             </ul>
         </section>
@@ -188,7 +232,7 @@
         <section id="submission" class="section">
             <h2>Submission</h2>
             <p>Participants can submit at <a href="https://www.codabench.org/competitions/4969/" style="color: blue;">Codabench</a>.
-            <!-- <p>Please submit predicted results with <strong>One</strong> JSON file.</p> -->
+            The submitted “results.json” should follow the format of the dataset sample.
             Feel free to contact us at <a href="mailto:tschedule4@gmail.com" style="color: blue;">tschedule4@gmail.com</a>.</p>
 
         </section>
@@ -196,34 +240,31 @@
         <!-- Timeline Section -->
         <section id="timeline" class="section" style="background-color: #f8f9fa; padding: 2rem;">
             <h2 style="text-align: center; font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem;">Timeline</h2>
+            <p>Please note: The submission deadline is at 11:59 p.m. (Anywhere on Earth) of the stated deadline date.</p>
             <div class="timeline" style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #555;">
                 <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #ddd;">
-                    <p style="margin: 0; font-weight: bold;">March 18, 2025:</p>
-                    <p style="margin: 0; text-align: right;">Direct workshop paper submission deadline</p>
+                    <p style="margin: 0; font-weight: bold;">Feb 10, 2025:</p>
+                    <p style="margin: 0; text-align: right;">Training data and participant instruction release for all shared tasks</p>
                 </div>
                 <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #ddd;">
-                    <p style="margin: 0; font-weight: bold;">Mar 25, 2025:</p>
-                    <p style="margin: 0; text-align: right;">ARR pre-reviewed workshop paper commitment deadline</p>
+                    <p style="margin: 0; font-weight: bold;">Mar 30, 2025:</p>
+                    <p style="margin: 0; text-align: right;">Evaluation deadline for all shared tasks</p>
                 </div>
                 <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #ddd;">
                     <p style="margin: 0; font-weight: bold;">Apr 5, 2025:</p>
                     <p style="margin: 0; text-align: right;">Notification of all shared tasks</p>
                 </div>
                 <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #ddd;">
+                    <p style="margin: 0; font-weight: bold;">Apr 12, 2025:</p>
+                    <p style="margin: 0; text-align: right;">Shared-task paper submission deadline</p>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #ddd;">
                     <p style="margin: 0; font-weight: bold;">Apr 30, 2025:</p>
-                    <p style="margin: 0; text-align: right;">Acceptance notification of all papers</p>
+                    <p style="margin: 0; text-align: right;">Acceptance notification of shared-task papers</p>
                 </div>
                 <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #ddd;">
                     <p style="margin: 0; font-weight: bold;">May 16, 2025:</p>
                     <p style="margin: 0; text-align: right;">Camera-ready paper deadline</p>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #ddd;">
-                    <p style="margin: 0; font-weight: bold;">Jul 7, 2025:</p>
-                    <p style="margin: 0; text-align: right;">Pre-recorded video due (hard deadline)</p>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 0.8rem 0;">
-                    <p style="margin: 0; font-weight: bold;">Jul 31 - August 1, 2025:</p>
-                    <p style="margin: 0; text-align: right;">Workshop dates (TBD)</p>
                 </div>
             </div>
         </section>
@@ -231,7 +272,7 @@
         <!-- Rewards Section -->
         <section id="rewards" class="section">
         <div id="rewards" class="section">
-            <h2>Rewards</h2>
+            <h2>Award of Top-ranking Participants</h2>
             <!-- <p>
                 To incentivize participation and encourage innovation, we will award the top three teams with cash prizes:
             </p>
@@ -241,7 +282,7 @@
             <p><strong>3rd Place:</strong> $1,000 USD</p>              
             <p> -->
                 Top-ranked participants will also receive a certificate of achievement and will be recommended to write a technical paper 
-                for submission to the ACL 2025.
+                for submission to the XLLM workshop of ACL 2025.
             </p>
         </div>
         </section>
@@ -258,9 +299,9 @@
         <!-- References Section -->
         <section id="references" class="section">
             <h2>References</h2>
-            <ol>
-                <li>Zhang, M., Jiang, G., Liu, S., Chen, J., & Zhang, M. (2024). LLM–assisted data augmentation for Chinese dialogue–level dependency parsing. Computational Linguistics.</li>
+            <ol>           
                 <li>Jiang, G., Liu, S., Zhang, M., & Zhang, M. (2023). A Pilot Study on Dialogue-Level Dependency Parsing for Chinese. Findings of ACL 2023.</li>
+                <li>Zhang, M., Jiang, G., Liu, S., Chen, J., & Zhang, M. (2024). LLM–assisted data augmentation for Chinese dialogue–level dependency parsing. Computational Linguistics.</li>
                 <li>Dozat, T., & Manning, C. D. (2017). Deep biaffine attention for neural dependency parsing. In Proceedings of ICLR.</li>
                 <li>Guo, P., Huang, S., Jiang, P., Sun, Y., Zhang, M., & Zhang, M. (2022). Curriculum-Style Fine-Grained Adaptation for Unsupervised Cross-Lingual Dependency Transfer. IEEE/ACM Transactions.</li>
             </ol>
