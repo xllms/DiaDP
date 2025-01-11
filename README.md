@@ -1,3 +1,3 @@
-# DiaDP
+XLLM @ ACL 2025 Shared Task-I: Chinese Dialogue-Level Dependency Parsing
 
-test for submit
+https://xllms.github.io/DiaDP/
