@@ -15,6 +15,8 @@
             padding: 0;
             background-color: #f8f9fa;
             line-height: 1.6;
+            
+            
         }
 
         h1 {
@@ -80,6 +82,80 @@
         a:hover {
             text-decoration: underline;
         }
+
+        pre {
+            outline: 1px solid #ccc;
+        }
+
+        .string {
+            color: green;
+        }
+
+        .number {
+            color: darkorange;
+        }
+
+        .boolean {
+            color: blue;
+        }
+
+        .null {
+            color: magenta;
+        }
+
+        .key {
+            color: red;
+        }
+
+        ._table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        ._table thead tr {
+            font-size: 13px;
+            color: #2e3b45;
+            text-align: center;
+            background-color: rgba(230, 255, 250, 0.92);
+            font-weight: bold;
+        }
+
+        ._table th,
+        ._table td {
+            line-height: 20px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        ._table tbody tr {
+            background: #fff;
+            font-size: 13px;
+            color: #393939;
+        }
+
+        ._table tbody tr:nth-child(2n) {
+            background: #f3f3f3;
+        }
+
+        /* Add styles for table borders and striped rows */
+        ._table.table-bordered {
+            border: 1px solid #ddd;
+        }
+
+        ._table.table-striped tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        ._table.table-striped tbody tr:nth-child(even) {
+            background-color: #f3f3f3;
+        }
+
+        /* Center text for specific elements */
+        .center-text {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -104,10 +180,10 @@
 
     <main>
         <!-- Leaderboard Section -->
-        <section id="leaderboard" class="section">
+        <!-- <section id="leaderboard" class="section">
             <h2>Leaderboard</h2>
             <p>Coming soon!</p>
-            <!-- <div class="leaderboard">
+            <div class="leaderboard">
                 <table>
                     <tr>
                         <th>Rank</th>
@@ -140,8 +216,41 @@
                         <td>59.3998</td>
                     </tr>
                 </table>
-            </div> -->
+            </div>
+        </section> -->
+
+
+
+
+
+        <section id="leaderboard" class="section">
+            <h2>Leaderboard</h2>
+            <p class="center-text">Congratulations to the winners!</p>
+            <div class="content has-text-centered">
+                <table class="_table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Team</th>
+                            <th>Overall Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>duanshuoqiu</td>
+                            <td>0.78988088</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>blcushzz</td>
+                            <td>0.57718452</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
+
 
         <!-- Introduction Section -->
         <section id="introduction" class="section">
@@ -289,6 +398,7 @@
         <!-- Organizers Section -->
         <section id="organizers" class="section">
             <h2>Organizers</h2>
+            <p>Bin Wang (Harbin Institute of Technology, Shenzhen, China)</p>
             <p>Jianling Li (Tianjin University, China)</p>
             <p>Hao Fei (National University of Singapore, Singapore)</p>
             <p>Meishan Zhang (Harbin Institute of Technology, Shenzhen, China)</p>
